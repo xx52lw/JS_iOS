@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+            <script language="javascript">
+
+            function OCtoJSClick() {
+                asyncAlert("OCtoJS 是OC代码的方法名称，参数可以是字典，数组，字符串等");
+                // OCtoJS 是OC代码的方法名称，参数可以是字典，数组，字符串等
+                window.webkit.messageHandlers.OCtoJS.postMessage(["OCtoJS第一个参数","OCtoJS第一个参数"]);
+                document.getElementById("returnValue").value = "oc调用了JS";
+            }
+            function JStoOCClick() {
+                window.webkit.messageHandlers.JStoOC.postMessage(["JStoOC第一个参数,可以给我回复哦"]);
+            }
+            function JStoOCResult(str) {
+                asyncAlert(str);
+                var content = "JS调用OC之后的回调"+","+str;
+                document.getElementById("returnValue").value = content;
+            }
+            
+            function asyncAlert(content) {
+                setTimeout(function(){
+                           alert(content);
+                           },1);
+            }
+            
+            </script>
+            </head>
+    
+    <body>
+        <h1>这是按钮调用</h1>
+        <input type="button" value="OC调用JS" onclick="OCtoJSClick()" />
+        <input type="button" value="JS调用OC" onclick="JStoOCClick()" />
+        
+        <h1>这是回调结果展示区</h1>
+        <textarea id ="returnValue" type="value" rows="5" cols="40">
+            
+        </textarea>
+        
+    </body>
+</html>
